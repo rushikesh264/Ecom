@@ -1,0 +1,60 @@
+{% extends 'store/index.html' %}
+{% load static %}
+{% block content %}
+
+<div onload="showSlides()">
+    <div class="slideshow-container">
+        <div class="mySlides">   
+            <div class="numbertext">1 / 3</div>
+            <img src="https://wallpapercave.com/wp/wp1866271.jpg" style="width:100%;height:300px;">
+            <div class="text">Exciting Offers on Clothes</div>
+        </div> 
+        <div class="mySlides">
+            <div class="numbertext">2 / 3</div>
+            <img src="https://cdn.pixabay.com/photo/2018/09/17/14/27/headphones-3683983__340.jpg" style="width:100%;height:300px;">
+            <div class="text">20% FLAT Discount on Headphones</div>
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">2 / 3</div>
+            <img src="https://images.unsplash.com/photo-1581993192008-63e896f4f744?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" style="width:100%;height:300px;">
+            <div class="text">Samsung M31 Sell on 25th DEC</div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+      
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+</div>
+<br><br>
+    <div class="row">
+
+        {% for product in products%}
+        <div class="col-lg-4">
+                <img class="thumbnail" src="{{product.imageURL}}">
+                <div class="box-element product">
+                    <h6><strong>{{product.name}}</strong></h6>
+                    <hr>
+                    <!-- <small>{{product.description}}</small>  -->
+                    <!-- updata-cart is class name for javascript use 
+                    product.id is used for getting info about which button added 
+                    data-action = "add" us used for add action -->
+                    <button data-product={{product.id}} data-action="add" class="btn btn-danger like update-cart">Add to Cart</button>
+                    <a href="../view_details/{{product.id}}/" class="btn btn-success">View</a>
+                    <h4 style="display: inline-block; float:right;"> &#x20B9 {{product.price|floatformat:2}}</h4>
+            
+                </div>
+            </div>
+        {%endfor%}
+       
+    </div>
+    <script type="text/javascript" src="{%static 'js/slider.js'%}"></script>
+   
+{% endblock content %}
+
+
